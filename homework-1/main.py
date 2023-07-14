@@ -1,4 +1,4 @@
-from src.channel import Channel
+from channel_later_delete import Channel
 
 if __name__ == '__main__':
     moscowpython = Channel('UC-OVMPlMA3-YCIeg4z5z23A')

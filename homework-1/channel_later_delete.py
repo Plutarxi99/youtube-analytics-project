@@ -18,5 +18,3 @@ class Channel:
         channel = youtube.channels().list(id=self.channel_id, part='snippet,statistics').execute()
         print(json.dumps(channel, indent=2, ensure_ascii=False))
 
-q = Channel('UC-OVMPlMA3-YCIeg4z5z23A').print_info()
-print(q)
