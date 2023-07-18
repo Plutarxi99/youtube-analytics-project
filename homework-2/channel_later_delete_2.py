@@ -9,7 +9,8 @@ class Channel:
 
     def __init__(self, channel_id: str) -> None:
         """Экземпляр инициализируется id канала. Дальше все данные будут подтягиваться по API."""
-        self._channel_id = channel_id
+        self.custom_url = None
+        self.__channel_id = channel_id
         self.title = None
         self.video_description = None
         self.url = None
@@ -21,7 +22,7 @@ class Channel:
         """Выводит в консоль информацию о канале."""
         api_key: str = os.getenv('YT_API_KEY')
         youtube = build('youtube', 'v3', developerKey=api_key)
-        channel = youtube.channels().list(id=self._channel_id, part='snippet,statistics').execute()
+        channel = youtube.channels().list(id=self.__channel_id, part='snippet,statistics').execute()
         print(json.dumps(channel, indent=2, ensure_ascii=False))
 
     def get_service(self):
@@ -35,25 +36,31 @@ class Channel:
 
     def to_json(self, data: '') -> '':
         """
-        сохраняющий в файл значения атрибутов экземпляра Channel
+        Cохраняющий в файл значения атрибутов экземпляра Channel
         """
+        searching_data = {
+            'channel_id': self.__channel_id,
+            'title': self.title,
+            'description': self.video_description,
+            'url': self.url,
+            'subscriber_count': self.subscriber_count,
+            'video_count': self.video_count,
+            'view_count': self.view_count
+        }
+        with open(data, "w") as file:
+            # Записываем данные в файл JSON
+            json.dump(searching_data, file, indent=2, ensure_ascii=False)
 
-        with open(data, 'w') as f:
-            json.dump(f'''{self.title},
-                      {self.video_description},
-                      {self.subscriber_count},
-                      {self.view_count},
-                      {self.view_count}''',
-                      f, indent=4)
 
     def get_attribut(self):
-        channel = self.get_service().channels().list(id=self._channel_id, part='snippet,statistics').execute()
+        channel = self.get_service().channels().list(id=self.__channel_id, part='snippet,statistics').execute()
 
         items = channel['items'][0]
 
         self.title: str = items['snippet']['title']
         self.video_description: str = items['snippet']['description']
-        # url: str = channel
+        self.custom_url = items['snippet']['customUrl']
+        self.url = f"https://www.youtube.com/{self.custom_url}"
         self.subscriber_count: int = items["statistics"]["subscriberCount"]
         self.video_count: int = items["statistics"]["videoCount"]
         self.view_count: int = items['statistics']['viewCount']
