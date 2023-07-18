@@ -160,3 +160,5 @@ cython_debug/
 .idea/
 src/class_get_youtube.py
 src/information_channel.py
+src/channel_2.py
+homework-2/qwe.py
