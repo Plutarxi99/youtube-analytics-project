@@ -1,5 +1,4 @@
-from workyoutube import WorkYoutube
-
+from src.workyoutube import WorkYoutube
 
 class Video(WorkYoutube):
     """
@@ -7,11 +6,13 @@ class Video(WorkYoutube):
     """
 
     def __init__(self, video_id: str):
-        super().__init__()  # инициализируем родительский класс WorkApiYoutube
-        self.video_id = video_id
         # Используем методы из родительского класса для получения данных из видео
-        super().get_data_on_video_id(self.video_id)
-        # super().get_attrib_in_video(self.video_response)
+        try:
+            super().__init__()
+            self.video_id = video_id
+            super().get_data_on_video_id(self.video_id)
+        except:
+            self.video_id = video_id
 
     def __str__(self):
         return f'{self.video_title}'

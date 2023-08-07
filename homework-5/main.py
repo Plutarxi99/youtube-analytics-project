@@ -1,6 +1,8 @@
 import datetime
-
-from playlist_lat_del import PlayList
+import sys
+sys.path.append('/home/egor/PycharmProjects/clone_desktot/OOP/youtube-analytics-project')
+from src.playlist import PlayList
+# from src.playlist import PlayList
 
 if __name__ == '__main__':
     pl = PlayList('PLv_zOGKKxVpj-n2qLkEM2Hj96LO6uqgQw')

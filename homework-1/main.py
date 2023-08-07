@@ -1,4 +1,6 @@
-from channel_later_delete import Channel
+import sys
+sys.path.append('/home/egor/PycharmProjects/clone_desktot/OOP/youtube-analytics-project')
+from src.channel import Channel
 
 if __name__ == '__main__':
     moscowpython = Channel('UC-OVMPlMA3-YCIeg4z5z23A')

@@ -1,5 +1,7 @@
-from channel_later_delete_3 import Channel
-
+# from src.channel import Channel
+import sys
+sys.path.append('/home/egor/PycharmProjects/clone_desktot/OOP/youtube-analytics-project')
+from src.channel import Channel
 if __name__ == '__main__':
     # Создаем два экземпляра класса
     moscowpython = Channel('UC-OVMPlMA3-YCIeg4z5z23A')

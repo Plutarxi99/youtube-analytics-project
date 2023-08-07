@@ -16,7 +16,7 @@ class WorkYoutube:
         self.video_url = None  # ссылка на видео
         self.video_view_count = None  # количество просмотров
         self.video_title = None  # название видео
-        self.video_id = None  # id видео
+        # self.video_id = None  # id видео
 
     def get_data_on_video_id(self, video_id):
         """

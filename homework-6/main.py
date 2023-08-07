@@ -1,4 +1,7 @@
-from video_l_d import Video
+# from src.video import Video
+import sys
+sys.path.append('/home/egor/PycharmProjects/clone_desktot/OOP/youtube-analytics-project')
+from src.video import Video
 
 if __name__ == '__main__':
     broken_video = Video('broken_video_id')
